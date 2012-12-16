@@ -10,16 +10,20 @@ public class Grid {
     DEAD {
       @Override
       public State shouldLive(int numLiveNeighbors) {
-        return numLiveNeighbors == 3 ? LIVE :DEAD;
-      }      
+        return stateFromBoolean(numLiveNeighbors == 3);
+      }
     },
     LIVE {
       @Override
       public State shouldLive(int numLiveNeighbors) {
-        return (numLiveNeighbors == 2 || numLiveNeighbors == 3) ? LIVE : DEAD;
+        return stateFromBoolean(numLiveNeighbors == 2 || numLiveNeighbors == 3);
       }
     };
 
+    public static State stateFromBoolean(boolean b) {
+      return b ? LIVE : DEAD;
+    }      
+    
     public abstract State shouldLive(int numLiveNeighbors);
   }
 
