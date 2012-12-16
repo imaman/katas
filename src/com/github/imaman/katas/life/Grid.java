@@ -3,11 +3,24 @@ package com.github.imaman.katas.life;
 import java.util.HashSet;
 import java.util.Set;
 
+
 public class Grid {
   
   public enum State {
-    DEAD,
-    LIVE;
+    DEAD {
+      @Override
+      public boolean shouldLive(int numLiveNeighbors) {
+        return numLiveNeighbors == 3;
+      }      
+    },
+    LIVE {
+      @Override
+      public boolean shouldLive(int numLiveNeighbors) {
+        return numLiveNeighbors == 2 || numLiveNeighbors == 3;
+      }
+    };
+
+    public abstract boolean shouldLive(int numLiveNeighbors);
   }
 
   private Set<Location> live = new HashSet<Location>();

@@ -1,6 +1,5 @@
 package com.github.imaman.katas.life;
 
-import com.github.imaman.katas.life.Grid.State;
 
 public class Life {
 
@@ -10,10 +9,6 @@ public class Life {
   
   public Life(Grid grid, RepdocutionPolicy policy) {
 //    throw new UnsupportedOperationException();
-  }
-
-  boolean shouldLive(State state, int numLiveNeighbors) {
-    return (numLiveNeighbors == 2 && state == State.LIVE) || numLiveNeighbors == 3;
   }
 
 }

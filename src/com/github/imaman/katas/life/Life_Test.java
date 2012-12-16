@@ -16,28 +16,28 @@ public class Life_Test {
   public static class LivenessRules {
     @Test
     public void aLiveCellWithOneNeighborDiesOfLonliness() {
-      assertFalse(new Life().shouldLive(State.DEAD, 1));
+      assertFalse(State.DEAD.shouldLive(1));
     }
   
     @Test
     public void aLiveCellWithTwoOrThtreeNeighborKeepsLiving() {
-      assertTrue(new Life().shouldLive(State.LIVE, 2));
-      assertTrue(new Life().shouldLive(State.LIVE, 3));
+      assertTrue(State.LIVE.shouldLive(2));
+      assertTrue(State.LIVE.shouldLive(3));
     }
     
     @Test
     public void aLiveCellWithFourOrMoreNeighborDies() {
-      assertFalse(new Life().shouldLive(State.LIVE, 4));
+      assertFalse(State.LIVE.shouldLive(4));
     }
   
     @Test
     public void aDeadCellWithThreeNeighborsBecomesLive() {
-      assertTrue(new Life().shouldLive(State.DEAD, 3));
+      assertTrue(State.DEAD.shouldLive(3));
     }
   
     @Test
     public void aDeadCellWithTwoNeighborsKeepsDying() {
-      assertFalse(new Life().shouldLive(State.DEAD, 2));
+      assertFalse(State.DEAD.shouldLive(2));
     }
   }
   
