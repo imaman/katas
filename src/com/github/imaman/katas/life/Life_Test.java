@@ -1,7 +1,7 @@
 package com.github.imaman.katas.life;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -16,28 +16,28 @@ public class Life_Test {
   public static class LivenessRules {
     @Test
     public void aLiveCellWithOneNeighborDiesOfLonliness() {
-      assertFalse(State.DEAD.shouldLive(1));
+      assertSame(State.DEAD, State.DEAD.shouldLive(1));
     }
   
     @Test
     public void aLiveCellWithTwoOrThtreeNeighborKeepsLiving() {
-      assertTrue(State.LIVE.shouldLive(2));
-      assertTrue(State.LIVE.shouldLive(3));
+      assertSame(State.LIVE, State.LIVE.shouldLive(2));
+      assertSame(State.LIVE, State.LIVE.shouldLive(3));
     }
     
     @Test
     public void aLiveCellWithFourOrMoreNeighborDies() {
-      assertFalse(State.LIVE.shouldLive(4));
+      assertSame(State.DEAD, State.LIVE.shouldLive(4));
     }
   
     @Test
     public void aDeadCellWithThreeNeighborsBecomesLive() {
-      assertTrue(State.DEAD.shouldLive(3));
+      assertSame(State.LIVE, State.DEAD.shouldLive(3));
     }
   
     @Test
     public void aDeadCellWithTwoNeighborsKeepsDying() {
-      assertFalse(State.DEAD.shouldLive(2));
+      assertSame(State.DEAD, State.DEAD.shouldLive(2));
     }
   }
   

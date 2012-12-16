@@ -9,18 +9,18 @@ public class Grid {
   public enum State {
     DEAD {
       @Override
-      public boolean shouldLive(int numLiveNeighbors) {
-        return numLiveNeighbors == 3;
+      public State shouldLive(int numLiveNeighbors) {
+        return numLiveNeighbors == 3 ? LIVE :DEAD;
       }      
     },
     LIVE {
       @Override
-      public boolean shouldLive(int numLiveNeighbors) {
-        return numLiveNeighbors == 2 || numLiveNeighbors == 3;
+      public State shouldLive(int numLiveNeighbors) {
+        return (numLiveNeighbors == 2 || numLiveNeighbors == 3) ? LIVE : DEAD;
       }
     };
 
-    public abstract boolean shouldLive(int numLiveNeighbors);
+    public abstract State shouldLive(int numLiveNeighbors);
   }
 
   private Set<Location> live = new HashSet<Location>();
