@@ -28,13 +28,17 @@ public class Life {
       for (Location l : location.neighbors()) {
         int n = grid.liveNeighborsCount(l);
         State nextState = grid.peek(l).shouldLive(n);
-        if (nextState == State.LIVE) {
-          nextGrid.liveAt(l);
-        }
+        set(nextGrid, l, nextState);
       }
     }
     
     return nextGrid;
+  }
+
+  private void set(Grid nextGrid, Location l, State nextState) {
+    if (nextState == State.LIVE) {
+      nextGrid.liveAt(l);
+    }
   }
 
 }
