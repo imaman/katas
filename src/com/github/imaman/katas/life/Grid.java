@@ -38,4 +38,11 @@ public class Grid {
   public int liveNeighborsCount(Location location) {
     throw new UnsupportedOperationException();
   }
+
+  public State peek(Location location) {
+    if (live.contains(location)) {
+      return State.LIVE;
+    }
+    return State.DEAD;
+  }
 }

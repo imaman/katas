@@ -41,6 +41,28 @@ public class Life_Test {
     }
   }
   
+  public static class Grid_Test {
+    @Test
+    public void whenEmptyAllCellsAreDead() {
+      Grid grid = new Grid();
+      assertEquals(State.DEAD, grid.peek(new Location(4, 10)));
+    }
+
+    @Test
+    public void returnsLiveForLiveCells() {
+      Grid grid = new Grid();
+      grid.liveAt(new Location(2, 10));
+      assertEquals(State.LIVE, grid.peek(new Location(2, 10)));
+    }
+
+    @Test
+    public void returnsDeadIfNoLiveCellAtThatLocation() {
+      Grid grid = new Grid();
+      grid.liveAt(new Location(2, 10));
+      assertEquals(State.DEAD, grid.peek(new Location(3, 10)));
+    }
+  }
+  
   public static class NeighborCount {    
     @Test
     public void findsNeighbors() {

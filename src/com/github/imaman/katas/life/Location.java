@@ -57,4 +57,11 @@ public class Location {
       return false;
     return true;
   }
+
+  @Override
+  public String toString() {
+    return "Location [row=" + row + ", col=" + col + "]";
+  }
+  
+  
 }
