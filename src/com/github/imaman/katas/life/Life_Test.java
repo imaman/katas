@@ -7,7 +7,8 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
+
+import com.github.imaman.katas.life.Grid.State;
 
 @RunWith(Enclosed.class)
 public class Life_Test {
@@ -15,28 +16,28 @@ public class Life_Test {
   public static class LivenessRules {
     @Test
     public void aLiveCellWithOneNeighborDiesOfLonliness() {
-      assertFalse(new Life().shouldLive(false, 1));
+      assertFalse(new Life().shouldLive(State.DEAD, 1));
     }
   
     @Test
     public void aLiveCellWithTwoOrThtreeNeighborKeepsLiving() {
-      assertTrue(new Life().shouldLive(true, 2));
-      assertTrue(new Life().shouldLive(true, 3));
+      assertTrue(new Life().shouldLive(State.LIVE, 2));
+      assertTrue(new Life().shouldLive(State.LIVE, 3));
     }
     
     @Test
     public void aLiveCellWithFourOrMoreNeighborDies() {
-      assertFalse(new Life().shouldLive(true, 4));
+      assertFalse(new Life().shouldLive(State.LIVE, 4));
     }
   
     @Test
     public void aDeadCellWithThreeNeighborsBecomesLive() {
-      assertTrue(new Life().shouldLive(false, 3));
+      assertTrue(new Life().shouldLive(State.DEAD, 3));
     }
   
     @Test
     public void aDeadCellWithTwoNeighborsKeepsDying() {
-      assertFalse(new Life().shouldLive(false, 2));
+      assertFalse(new Life().shouldLive(State.DEAD, 2));
     }
   }
   

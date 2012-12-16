@@ -4,6 +4,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Grid {
+  
+  public enum State {
+    DEAD,
+    LIVE;
+  }
 
   private Set<Location> live = new HashSet<Location>();
 
