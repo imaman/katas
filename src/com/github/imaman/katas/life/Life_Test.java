@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 
 import com.github.imaman.katas.life.Grid.State;
 
@@ -111,24 +112,46 @@ public class Life_Test {
     }
   }
   
-//  public static class ComputeNextStateOfCell {
-//    public void f() {
-//      Grid grid = Mockito.mock(Grid.class);
-//      RepdocutionPolicy repdocutionPolicy = Mockito.mock(RepdocutionPolicy.class);
-//      
-//      Location location25 = new Location(2, 5);
-//      Mockito.when(grid.liveNeighborsCount(location25)).thenReturn(1000);
-//      Mockito.when(repdocutionPolicy.shouldLive(1000)).thenReturn(true);
-//      
-//
-//      Life life = new Life(grid, repdocutionPolicy);
-//      life.nextStateOf()
-//      
-//
-//      
-//      
-//
-//    }
+  public static class ComputeNextState {
+    
+    @Test
+    public void ofSingleCell() {
+      Grid grid = Mockito.mock(Grid.class);
+      
+      Location aLocation = new Location(2, 5);
+      Mockito.when(grid.liveNeighborsCount(aLocation)).thenReturn(1000);
+      
+      State state = Mockito.mock(State.class);
+      Mockito.when(grid.peek(aLocation)).thenReturn(state);
+      
+      State nextState = Mockito.mock(State.class);
+      Mockito.when(state.shouldLive(1000)).thenReturn(nextState);
+
+      Life life = new Life(grid, null);
+      assertSame(nextState, life.nextStateOf(aLocation));
+    }
+    
+    @Test
+    public void ofGrid() {
+      Grid grid = new Grid();
+      assertEquals(0, grid.count());
+      grid.liveAt(new Location(0, 1));
+      grid.liveAt(new Location(1, 1));
+      grid.liveAt(new Location(2, 1));
+      assertEquals(3, grid.count());
+      
+      Life life = new Life(grid, null);
+      Grid nextGrid = life.next();
+      
+      
+      assertEquals(3, grid.count());
+      assertSame(State.LIVE, nextGrid.peek(new Location(1, 0)));
+      assertSame(State.LIVE, nextGrid.peek(new Location(1, 1)));
+      assertSame(State.LIVE, nextGrid.peek(new Location(1, 2)));
+      
+    }
+    
+  }
     
     
 //    grid.liveNeighborsCount(new Location(2, 5));

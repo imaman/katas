@@ -1,10 +1,11 @@
 package com.github.imaman.katas.life;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 
-public class Grid {
+public class Grid implements Iterable<Location> {
   
   public enum State {
     DEAD {
@@ -40,10 +41,19 @@ public class Grid {
   }
   
   public int liveNeighborsCount(Location location) {
-    throw new UnsupportedOperationException();
+    return liveNeighborsOf(location).size();
   }
 
   public State peek(Location location) {
     return State.stateFromBoolean(live.contains(location));
+  }
+
+  public int count() {
+    return live.size();
+  }
+
+  @Override
+  public Iterator<Location> iterator() {
+    return live.iterator();
   }
 }
