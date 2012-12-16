@@ -35,7 +35,7 @@ public class Life {
     return nextGrid;
   }
 
-  private void set(Grid nextGrid, Location l, State nextState) {
+  private static void set(Grid nextGrid, Location l, State nextState) {
     if (nextState == State.LIVE) {
       nextGrid.liveAt(l);
     }
