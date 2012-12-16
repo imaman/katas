@@ -44,9 +44,6 @@ public class Grid {
   }
 
   public State peek(Location location) {
-    if (live.contains(location)) {
-      return State.LIVE;
-    }
-    return State.DEAD;
+    return State.stateFromBoolean(live.contains(location));
   }
 }
