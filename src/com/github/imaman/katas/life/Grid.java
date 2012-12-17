@@ -56,4 +56,12 @@ public class Grid implements Iterable<Location> {
   public Iterator<Location> iterator() {
     return live.iterator();
   }
+  
+  public void setCell(Location location, State state) {
+    if (state == State.LIVE) {
+      liveAt(location);
+    } else {
+      live.remove(location);
+    }
+  }
 }

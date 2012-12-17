@@ -142,15 +142,13 @@ public class Life_Test {
       
       Life life = new Life(grid, null);
       Grid nextGrid = life.next();
-      
-      
+            
       assertEquals(3, grid.count());
       assertSame(State.LIVE, nextGrid.peek(new Location(1, 0)));
       assertSame(State.LIVE, nextGrid.peek(new Location(1, 1)));
       assertSame(State.LIVE, nextGrid.peek(new Location(1, 2)));
       
-    }
-    
+    }    
   }
     
     
